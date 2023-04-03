@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
+
+<head>
+    {{- partial "head.html" . }}
 {{- /* theme-toggle is enabled */}}
 {{- if (not site.Params.disableThemeToggle) }}
 {{- /* theme is light */}}
@@ -38,6 +43,18 @@
 
 </script>
 {{- end }}
+</head>
+
+<body class="
+{{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) -}}
+{{- print "list" -}}
+{{- end -}}
+{{- if eq site.Params.defaultTheme `dark` -}}
+{{- print " dark" }}
+{{-  else }}
+{{- print " light" }}
+{{- end -}}
+{{- print " PaperMod" }}" id="top">
 
 <header class="header">
     <nav class="nav">
@@ -147,3 +164,5 @@
         </ul>
     </nav>
 </header>
+
+</body>
